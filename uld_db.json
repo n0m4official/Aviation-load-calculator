@@ -1,0 +1,233 @@
+[
+  {
+    "Prefix": "AAA",
+    "ULD Type": "LD7 / large pallet",
+    "Width (slots)": 2,
+    "Deck": "Main",
+    "Notes": "Contoured wide/narrow body"
+  },
+  {
+    "Prefix": "AAD",
+    "ULD Type": "LD7 / large pallet",
+    "Width (slots)": 2,
+    "Deck": "Main",
+    "Notes": "Contoured wide/narrow body"
+  },
+  {
+    "Prefix": "AAY",
+    "ULD Type": "LD7 / large pallet",
+    "Width (slots)": 2,
+    "Deck": "Main",
+    "Notes": "Contoured wide/narrow body"
+  },
+  {
+    "Prefix": "AAZ",
+    "ULD Type": "LD7 / large pallet",
+    "Width (slots)": 2,
+    "Deck": "Main",
+    "Notes": "Contoured wide/narrow body"
+  },
+  {
+    "Prefix": "AMJ",
+    "ULD Type": "LD7 / large pallet",
+    "Width (slots)": 2,
+    "Deck": "Main",
+    "Notes": "Contoured wide-body main deck"
+  },
+  {
+    "Prefix": "P1P",
+    "ULD Type": "LD7 / large pallet",
+    "Width (slots)": 2,
+    "Deck": "Main",
+    "Notes": "Large pallet with folding wings"
+  },
+  {
+    "Prefix": "ALD",
+    "ULD Type": "LD11 pallet",
+    "Width (slots)": 3,
+    "Deck": "Main or Lower",
+    "Notes": "Very wide, lower deck for 747/777/MD-11"
+  },
+  {
+    "Prefix": "PLA",
+    "ULD Type": "LD11 pallet",
+    "Width (slots)": 3,
+    "Deck": "Main or Lower",
+    "Notes": "Very wide, lower deck for 747/777/MD-11"
+  },
+  {
+    "Prefix": "AAP",
+    "ULD Type": "LD9",
+    "Width (slots)": 2,
+    "Deck": "Lower",
+    "Notes": "Standard widebody lower deck"
+  },
+  {
+    "Prefix": "AAF",
+    "ULD Type": "LD26",
+    "Width (slots)": 3,
+    "Deck": "Lower",
+    "Notes": "Very large, double slot"
+  },
+  {
+    "Prefix": "AMU",
+    "ULD Type": "LD39",
+    "Width (slots)": 3,
+    "Deck": "Lower",
+    "Notes": "Largest lower deck container"
+  },
+  {
+    "Prefix": "AKC",
+    "ULD Type": "LD1",
+    "Width (slots)": 1,
+    "Deck": "Main or Lower",
+    "Notes": "Smaller ULD, narrow-body or lower deck"
+  },
+  {
+    "Prefix": "AKE",
+    "ULD Type": "LD3",
+    "Width (slots)": 1,
+    "Deck": "Main or Lower",
+    "Notes": "Smaller ULD, narrow-body or lower deck"
+  },
+  {
+    "Prefix": "AKH",
+    "ULD Type": "LD3-45",
+    "Width (slots)": 1,
+    "Deck": "Main or Lower",
+    "Notes": "Mainly for A320/321"
+  },
+  {
+    "Prefix": "AKW",
+    "ULD Type": "LD3-45",
+    "Width (slots)": 1,
+    "Deck": "Main or Lower",
+    "Notes": "Mainly for A320/321"
+  },
+  {
+    "Prefix": "AKN",
+    "ULD Type": "LD3",
+    "Width (slots)": 1,
+    "Deck": "Main or Lower",
+    "Notes": "With forklift holes"
+  },
+  {
+    "Prefix": "ALB",
+    "ULD Type": "LD4",
+    "Width (slots)": 1,
+    "Deck": "Main or Lower",
+    "Notes": "With forklift holes"
+  },
+  {
+    "Prefix": "ALF",
+    "ULD Type": "LD6",
+    "Width (slots)": 1,
+    "Deck": "Main or Lower",
+    "Notes": "Without forklift holes"
+  },
+  {
+    "Prefix": "ALP",
+    "ULD Type": "LD11",
+    "Width (slots)": 1,
+    "Deck": "Main or Lower",
+    "Notes": "Without forklift holes"
+  },
+  {
+    "Prefix": "AMA",
+    "ULD Type": "M1 container",
+    "Width (slots)": 1,
+    "Deck": "Main or Lower",
+    "Notes": "Standard container"
+  },
+  {
+    "Prefix": "AMD",
+    "ULD Type": "M1H container",
+    "Width (slots)": 1,
+    "Deck": "Main or Lower",
+    "Notes": "High version container"
+  },
+  {
+    "Prefix": "AYY",
+    "ULD Type": "Half-width container",
+    "Width (slots)": 1,
+    "Deck": "Main",
+    "Notes": "Contoured main deck"
+  },
+  {
+    "Prefix": "AYX",
+    "ULD Type": "Half-width container",
+    "Width (slots)": 1,
+    "Deck": "Main",
+    "Notes": "With fittings for fire extinguisher"
+  },
+  {
+    "Prefix": "DPE",
+    "ULD Type": "LD2",
+    "Width (slots)": 1,
+    "Deck": "Lower",
+    "Notes": "Small lower deck container"
+  },
+  {
+    "Prefix": "DPN",
+    "ULD Type": "LD2",
+    "Width (slots)": 1,
+    "Deck": "Lower",
+    "Notes": "With forklift holes"
+  },
+  {
+    "Prefix": "DQF",
+    "ULD Type": "LD8",
+    "Width (slots)": 2,
+    "Deck": "Lower",
+    "Notes": "Double lower deck container"
+  },
+  {
+    "Prefix": "FLA",
+    "ULD Type": "LD11 pallet",
+    "Width (slots)": 3,
+    "Deck": "Lower",
+    "Notes": "Large lower deck container"
+  },
+  {
+    "Prefix": "FQA",
+    "ULD Type": "LD8 pallet",
+    "Width (slots)": 2,
+    "Deck": "Lower",
+    "Notes": "Large lower deck container"
+  },
+  {
+    "Prefix": "HMA",
+    "ULD Type": "Horse stall",
+    "Width (slots)": 1,
+    "Deck": "Lower",
+    "Notes": "For horses"
+  },
+  {
+    "Prefix": "KMA",
+    "ULD Type": "Sheep/goat pen",
+    "Width (slots)": 1,
+    "Deck": "Lower",
+    "Notes": "For small livestock"
+  },
+  {
+    "Prefix": "XAW",
+    "ULD Type": "LD7",
+    "Width (slots)": 2,
+    "Deck": "Main",
+    "Notes": "Fixed wings for overhang"
+  },
+  {
+    "Prefix": "PMC",
+    "ULD Type": "LD7",
+    "Width (slots)": 2,
+    "Deck": "Main",
+    "Notes": "Large pallet"
+  },
+  {
+    "Prefix": "PGA",
+    "ULD Type": "M6",
+    "Width (slots)": 3,
+    "Deck": "Main",
+    "Notes": "Freighter main deck only"
+  }
+]

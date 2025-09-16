@@ -1,0 +1,466 @@
+[
+  {
+    "model": "A300-B4",
+    "mtw": 165000,
+    "mainDeck": {
+      "slots": 0,
+      "rowLength": 0,
+      "noseSlots": 0,
+      "tailSlots": 0
+    },
+    "lowerDeck": {
+      "slots": 23,
+      "rowLength": 6,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "A310-300",
+    "mtw": 164000,
+    "mainDeck": {
+      "slots": 0,
+      "rowLength": 0,
+      "noseSlots": 0,
+      "tailSlots": 0
+    },
+    "lowerDeck": {
+      "slots": 20,
+      "rowLength": 5,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "A330-200",
+    "mtw": 242000,
+    "mainDeck": {
+      "slots": 22,
+      "rowLength": 8,
+      "noseSlots": 1,
+      "tailSlots": 1
+    },
+    "lowerDeck": {
+      "slots": 26,
+      "rowLength": 7,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "A330-300",
+    "mtw": 242000,
+    "mainDeck": {
+      "slots": 22,
+      "rowLength": 8,
+      "noseSlots": 1,
+      "tailSlots": 1
+    },
+    "lowerDeck": {
+      "slots": 32,
+      "rowLength": 8,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "A340-300",
+    "mtw": 275000,
+    "mainDeck": {
+      "slots": 32,
+      "rowLength": 8,
+      "noseSlots": 2,
+      "tailSlots": 2
+    },
+    "lowerDeck": {
+      "slots": 32,
+      "rowLength": 8,
+      "noseSlots": 2,
+      "tailSlots": 2
+    }
+  },
+  {
+    "model": "A340-600",
+    "mtw": 368000,
+    "mainDeck": {
+      "slots": 42,
+      "rowLength": 7,
+      "noseSlots": 2,
+      "tailSlots": 2
+    },
+    "lowerDeck": {
+      "slots": 42,
+      "rowLength": 7,
+      "noseSlots": 2,
+      "tailSlots": 2
+    }
+  },
+  {
+    "model": "A350-900",
+    "mtw": 280000,
+    "mainDeck": {
+      "slots": 36,
+      "rowLength": 9,
+      "noseSlots": 2,
+      "tailSlots": 2
+    },
+    "lowerDeck": {
+      "slots": 36,
+      "rowLength": 9,
+      "noseSlots": 2,
+      "tailSlots": 2
+    }
+  },
+  {
+    "model": "A350-1000",
+    "mtw": 316000,
+    "mainDeck": {
+      "slots": 44,
+      "rowLength": 11,
+      "noseSlots": 2,
+      "tailSlots": 2
+    },
+    "lowerDeck": {
+      "slots": 44,
+      "rowLength": 11,
+      "noseSlots": 2,
+      "tailSlots": 2
+    }
+  },
+  {
+    "model": "A380-800",
+    "mtw": 560000,
+    "mainDeck": {
+      "slots": 58,
+      "rowLength": 10,
+      "noseSlots": 3,
+      "tailSlots": 3
+    },
+    "lowerDeck": {
+      "slots": 38,
+      "rowLength": 8,
+      "noseSlots": 2,
+      "tailSlots": 2
+    }
+  },
+  {
+    "model": "B707-320C",
+    "mtw": 151000,
+    "mainDeck": {
+      "slots": 0,
+      "rowLength": 0,
+      "noseSlots": 0,
+      "tailSlots": 0
+    },
+    "lowerDeck": {
+      "slots": 16,
+      "rowLength": 4,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "B727-200",
+    "mtw": 95000,
+    "mainDeck": {
+      "slots": 0,
+      "rowLength": 0,
+      "noseSlots": 0,
+      "tailSlots": 0
+    },
+    "lowerDeck": {
+      "slots": 12,
+      "rowLength": 3,
+      "noseSlots": 0,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "B737-300",
+    "mtw": 60000,
+    "mainDeck": {
+      "slots": 0,
+      "rowLength": 0,
+      "noseSlots": 0,
+      "tailSlots": 0
+    },
+    "lowerDeck": {
+      "slots": 4,
+      "rowLength": 2,
+      "noseSlots": 0,
+      "tailSlots": 0
+    }
+  },
+  {
+    "model": "B737-400",
+    "mtw": 68000,
+    "mainDeck": {
+      "slots": 0,
+      "rowLength": 0,
+      "noseSlots": 0,
+      "tailSlots": 0
+    },
+    "lowerDeck": {
+      "slots": 5,
+      "rowLength": 2,
+      "noseSlots": 0,
+      "tailSlots": 0
+    }
+  },
+  {
+    "model": "B747-200",
+    "mtw": 377000,
+    "mainDeck": {
+      "slots": 30,
+      "rowLength": 10,
+      "noseSlots": 2,
+      "tailSlots": 2
+    },
+    "lowerDeck": {
+      "slots": 32,
+      "rowLength": 8,
+      "noseSlots": 2,
+      "tailSlots": 2
+    }
+  },
+  {
+    "model": "B747-400",
+    "mtw": 396000,
+    "mainDeck": {
+      "slots": 30,
+      "rowLength": 10,
+      "noseSlots": 2,
+      "tailSlots": 2
+    },
+    "lowerDeck": {
+      "slots": 32,
+      "rowLength": 8,
+      "noseSlots": 2,
+      "tailSlots": 2
+    }
+  },
+  {
+    "model": "B747-8",
+    "mtw": 442000,
+    "mainDeck": {
+      "slots": 38,
+      "rowLength": 10,
+      "noseSlots": 3,
+      "tailSlots": 3
+    },
+    "lowerDeck": {
+      "slots": 46,
+      "rowLength": 10,
+      "noseSlots": 3,
+      "tailSlots": 3
+    }
+  },
+  {
+    "model": "B757-200",
+    "mtw": 115000,
+    "mainDeck": {
+      "slots": 0,
+      "rowLength": 0,
+      "noseSlots": 0,
+      "tailSlots": 0
+    },
+    "lowerDeck": {
+      "slots": 15,
+      "rowLength": 5,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "B767-200",
+    "mtw": 136000,
+    "mainDeck": {
+      "slots": 0,
+      "rowLength": 0,
+      "noseSlots": 0,
+      "tailSlots": 0
+    },
+    "lowerDeck": {
+      "slots": 22,
+      "rowLength": 6,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "B767-300",
+    "mtw": 158000,
+    "mainDeck": {
+      "slots": 0,
+      "rowLength": 0,
+      "noseSlots": 0,
+      "tailSlots": 0
+    },
+    "lowerDeck": {
+      "slots": 24,
+      "rowLength": 6,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "B767-400",
+    "mtw": 204000,
+    "mainDeck": {
+      "slots": 0,
+      "rowLength": 0,
+      "noseSlots": 0,
+      "tailSlots": 0
+    },
+    "lowerDeck": {
+      "slots": 28,
+      "rowLength": 7,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "B777-200",
+    "mtw": 247000,
+    "mainDeck": {
+      "slots": 27,
+      "rowLength": 9,
+      "noseSlots": 1,
+      "tailSlots": 1
+    },
+    "lowerDeck": {
+      "slots": 32,
+      "rowLength": 8,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "B777-300",
+    "mtw": 299000,
+    "mainDeck": {
+      "slots": 32,
+      "rowLength": 8,
+      "noseSlots": 2,
+      "tailSlots": 2
+    },
+    "lowerDeck": {
+      "slots": 44,
+      "rowLength": 11,
+      "noseSlots": 2,
+      "tailSlots": 2
+    }
+  },
+  {
+    "model": "B787-8",
+    "mtw": 227000,
+    "mainDeck": {
+      "slots": 0,
+      "rowLength": 0,
+      "noseSlots": 0,
+      "tailSlots": 0
+    },
+    "lowerDeck": {
+      "slots": 28,
+      "rowLength": 7,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "B787-9",
+    "mtw": 254000,
+    "mainDeck": {
+      "slots": 0,
+      "rowLength": 0,
+      "noseSlots": 0,
+      "tailSlots": 0
+    },
+    "lowerDeck": {
+      "slots": 36,
+      "rowLength": 9,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "B787-10",
+    "mtw": 254000,
+    "mainDeck": {
+      "slots": 0,
+      "rowLength": 0,
+      "noseSlots": 0,
+      "tailSlots": 0
+    },
+    "lowerDeck": {
+      "slots": 40,
+      "rowLength": 10,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "DC-8-62",
+    "mtw": 151000,
+    "mainDeck": {
+      "slots": 0,
+      "rowLength": 0,
+      "noseSlots": 0,
+      "tailSlots": 0
+    },
+    "lowerDeck": {
+      "slots": 18,
+      "rowLength": 6,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "DC-8-63",
+    "mtw": 161000,
+    "mainDeck": {
+      "slots": 0,
+      "rowLength": 0,
+      "noseSlots": 0,
+      "tailSlots": 0
+    },
+    "lowerDeck": {
+      "slots": 22,
+      "rowLength": 7,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "DC-10-30",
+    "mtw": 263000,
+    "mainDeck": {
+      "slots": 22,
+      "rowLength": 11,
+      "noseSlots": 1,
+      "tailSlots": 1
+    },
+    "lowerDeck": {
+      "slots": 30,
+      "rowLength": 10,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  },
+  {
+    "model": "MD-11",
+    "mtw": 273000,
+    "mainDeck": {
+      "slots": 26,
+      "rowLength": 13,
+      "noseSlots": 1,
+      "tailSlots": 1
+    },
+    "lowerDeck": {
+      "slots": 34,
+      "rowLength": 10,
+      "noseSlots": 1,
+      "tailSlots": 1
+    }
+  }
+]
