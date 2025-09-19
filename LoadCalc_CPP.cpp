@@ -1,5 +1,4 @@
-﻿// main.cpp  (C++17)
-// Requires: json.hpp (nlohmann single-header)
+﻿// main.cpp (C++17)
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -13,12 +12,12 @@
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
-using std::max;
 #include "json.hpp"
 
 using json = nlohmann::json;
 using namespace std;
 
+// ===== Structs =====
 struct Deck {
     int slots = 0;
     int rowLength = 8;
@@ -37,14 +36,14 @@ struct Aircraft {
 struct ULDDBEntry {
     string prefix = "";
     string uldType = "";
-    int widthSlots = 1;   // default 1 slot
+    int widthSlots = 1;
     string deck = "Any";
     string notes = "";
 };
 
 struct ULD {
     string id = "";
-    double weight = 0.0;  // initialize to 0
+    double weight = 0.0;
     enum class Type { MAIN, LOWER, ANY } type = Type::ANY;
     bool allowSpecialSlots = true;
 };
@@ -159,39 +158,51 @@ map<string, Aircraft> loadAircraftDB(const string& path) {
     return db;
 }
 
+// ===== Utility =====
 double promptDouble(const string& msg) {
     double v; string s;
     while (true) {
-        cout << msg; getline(cin, s);
+        cout << msg;
+        getline(cin, s);
         try { v = stod(s); return v; }
         catch (...) { cout << "Enter a number.\n"; }
     }
 }
 
-// Saves the contents of lines to a file
-bool saveLoadPlanToFile(const string& filename, const vector<string>& lines) {
-    std::ofstream out(filename);
-    if (!out.is_open()) return false;
-    for (const auto& line : lines) {
-        out << line << "\n";
+int promptInt(const string& msg) {
+    int v; string s;
+    while (true) {
+        cout << msg;
+        getline(cin, s);
+        try { v = stoi(s); return v; }
+        catch (...) { cout << "Enter an integer.\n"; }
     }
-    out.close();
+}
+
+bool saveLoadPlanToFile(const string& filename, const vector<string>& lines) {
+    ofstream out(filename);
+    if (!out.is_open()) return false;
+    for (const auto& line : lines) out << line << "\n";
     return true;
 }
 
 // Print decks with 1-3 slots per row (top/bottom 1 slot), showing ULD ID and type
-void printDeckColumnsASCII(const string& deckName, const Deck& deck, const vector<Slot>& slots, const vector<ULDDBEntry>& uldb, vector<string>* outputLines = nullptr) {
+// Print decks with support for multi-slot ULDs
+void printDeckColumnsASCII(const string& deckName, const Deck& deck,
+    const vector<Slot>& slots, const vector<ULDDBEntry>& uldb,
+    vector<string>* outputLines = nullptr)
+{
     auto writeLine = [&](const string& s) {
         cout << s << "\n";
         if (outputLines) outputLines->push_back(s);
         };
 
-    writeLine("\n=== " + deckName + " Deck Load Plan (slots=" + std::to_string(deck.slots) + ") ===");
+    writeLine("\n=== " + deckName + " Deck Load Plan (slots=" + to_string(deck.slots) + ") ===");
     if (deck.slots == 0) return;
 
     int boxWidth = 11;
-    int boxHeight = 4;
 
+    // rows: center 3, edges 1
     vector<vector<const Slot*>> rows;
     if (!slots.empty()) rows.push_back({ &slots[0] });
     int idx = 1;
@@ -206,19 +217,27 @@ void printDeckColumnsASCII(const string& deckName, const Deck& deck, const vecto
     if (idx < (int)slots.size()) rows.push_back({ &slots.back() });
 
     for (auto& row : rows) {
-        int totalWidth = boxWidth * (int)row.size();
-        int leftPad = (deck.rowLength * boxWidth - totalWidth) / 2;
-
         // Top border
-        string line = string(leftPad, ' ');
-        for (auto* s : row) line += "+" + string(boxWidth - 2, '-');
+        string line;
+        for (auto* s : row) {
+            line += "+";
+            if (s->occupied && !s->occupantId.empty()) {
+                int width = 1;
+                for (size_t k = 1; k < row.size(); ++k) {
+                    if (row[k - 1]->occupantId == row[k]->occupantId) width++;
+                }
+                line += string(boxWidth * width - 2, '-');
+            }
+            else {
+                line += string(boxWidth - 2, '-');
+            }
+        }
         line += "+";
         writeLine(line);
 
-        // ID + type line
-        line = string(leftPad, ' ');
+        // Content lines (id/type)
+        line.clear();
         for (auto* s : row) {
-            string idLine = " ";
             if (s->occupied) {
                 const ULDDBEntry* info = nullptr;
                 for (auto& u : uldb) {
@@ -226,34 +245,39 @@ void printDeckColumnsASCII(const string& deckName, const Deck& deck, const vecto
                 }
                 string typeStr = info ? "[" + info->uldType + "]" : "";
                 string fullText = s->occupantId + typeStr;
-                if ((int)fullText.size() > boxWidth - 2) fullText = fullText.substr(0, boxWidth - 2);
-                idLine = fullText;
+                if ((int)fullText.size() > boxWidth - 2)
+                    fullText = fullText.substr(0, boxWidth - 2);
+                line += "|" + fullText + string(boxWidth - 1 - fullText.size(), ' ');
             }
-            else if (s->slotType == SlotType::NOSE) idLine = "  N  ";
-            else if (s->slotType == SlotType::TAIL) idLine = "  T  ";
-
-            line += "|" + idLine + string(boxWidth - 1 - idLine.size(), ' ');
+            else {
+                string idLine = (s->slotType == SlotType::NOSE ? "  N  " :
+                    s->slotType == SlotType::TAIL ? "  T  " : "");
+                line += "|" + idLine + string(boxWidth - 1 - idLine.size(), ' ');
+            }
         }
         line += "|";
         writeLine(line);
 
-        // Slot numbers line
-        line = string(leftPad, ' ');
-        for (auto* s : row) line += "|" + ("#" + std::to_string(s->index + 1)) + string(boxWidth - 1 - ("#" + std::to_string(s->index + 1)).size(), ' ');
+        // Slot numbers
+        line.clear();
+        for (auto* s : row) {
+            string n = "#" + to_string(s->index + 1);
+            line += "|" + n + string(boxWidth - 1 - n.size(), ' ');
+        }
         line += "|";
         writeLine(line);
 
-        // Weight line
-        line = string(leftPad, ' ');
+        // Weights
+        line.clear();
         for (auto* s : row) {
-            string w = s->occupied ? std::to_string((int)s->occupantWeight) : "";
+            string w = s->occupied ? to_string((int)s->occupantWeight) : "";
             line += "|" + w + string(boxWidth - 1 - w.size(), ' ');
         }
         line += "|";
         writeLine(line);
 
         // Bottom border
-        line = string(leftPad, ' ');
+        line.clear();
         for (auto* s : row) line += "+" + string(boxWidth - 2, '-');
         line += "+";
         writeLine(line);
@@ -307,7 +331,7 @@ void assignSpecialSlots(Aircraft& ac) {
 
 int main() {
     ios::sync_with_stdio(false); cin.tie(nullptr);
-    auto ulddb = loadULDDB("ulddb.json");
+    auto ulddb = loadULDDB("uld_db.json");
     Slot* bestSlot = nullptr;
     cout << "=== Manual ULD Load Planner ===\n";
 
@@ -335,87 +359,102 @@ int main() {
     vector<Slot> mainSlots(ac.mainDeck.slots), lowerSlots(ac.lowerDeck.slots);
 
     // main deck
-    for (int i = 0; i < ac.mainDeck.slots; ++i) {
-        mainSlots[i].deckName = "main";
-        mainSlots[i].index = i;
-        mainSlots[i].arm = ac.mainDeck.slotArms[i];
-        if (i < ac.mainDeck.noseSlots) mainSlots[i].slotType = SlotType::NOSE;
-        else if (i >= ac.mainDeck.slots - ac.mainDeck.tailSlots) mainSlots[i].slotType = SlotType::TAIL;
-    }
-
-    // lower deck
-    for (int i = 0; i < ac.lowerDeck.slots; ++i) {
-        lowerSlots[i].deckName = "lower";
-        lowerSlots[i].index = i;
-        lowerSlots[i].arm = ac.lowerDeck.slotArms[i];
-        if (i < ac.lowerDeck.noseSlots) lowerSlots[i].slotType = SlotType::NOSE;
-        else if (i >= ac.lowerDeck.slots - ac.lowerDeck.tailSlots) lowerSlots[i].slotType = SlotType::TAIL;
-    }
-
-    // input ULDs
-    int nULDs; cout << "Number of ULDs: "; cin >> nULDs; cin.ignore();
-    vector<ULD> ulds;
-    for (int i = 0; i < nULDs; ++i) {
-        ULD u;
-        while (true) { cout << "ULD #" << i + 1 << " ID: "; getline(cin, u.id); if (!u.id.empty()) break; }
-        u.weight = promptDouble("ULD " + u.id + " weight (kg): ");
-        cout << "ULD type (MAIN / LOWER / ANY): ";
-        string t; getline(cin, t);
-        if (t == "MAIN") u.type = ULD::Type::MAIN;
-        else if (t == "LOWER") u.type = ULD::Type::LOWER;
-        else u.type = ULD::Type::ANY;
-        cout << "Allow nose/tail? (y/n): "; getline(cin, t); u.allowSpecialSlots = (t == "y" || t == "Y");
-        ulds.push_back(u);
-    }
-
-    // assign greedily
+    // Collect all free slots into one vector
     vector<Slot*> freeSlots;
     for (auto& s : mainSlots) freeSlots.push_back(&s);
     for (auto& s : lowerSlots) freeSlots.push_back(&s);
 
-    double avgArm = 0.0; for (auto* s : freeSlots) avgArm += s->arm; if (!freeSlots.empty()) avgArm /= freeSlots.size();
+    // assign greedily (safe version with multi-slot placement)
+    vector<ULD> ulds;
+    int nULDs = promptInt("Number of ULDs: ");
+    for (int i = 0; i < nULDs; ++i) {
+        ULD u;
+        while (true) {
+            cout << "ULD #" << (i + 1) << " ID: ";
+            getline(cin, u.id);
+            if (!u.id.empty()) break;
+        }
+        u.weight = promptDouble("ULD " + u.id + " weight (kg): ");
+        cout << "ULD type (MAIN / LOWER / ANY): ";
+        string t; getline(cin, t);
+        // Normalize input to uppercase
+        std::transform(t.begin(), t.end(), t.begin(), ::toupper);
+        if (t == "MAIN") u.type = ULD::Type::MAIN;
+        else if (t == "LOWER") u.type = ULD::Type::LOWER;
+        else u.type = ULD::Type::ANY;
+        cout << "Allow nose/tail? (y/n): "; getline(cin, t);
+        // Accept "y", "Y", "yes", "YES" (case-insensitive)
+        std::transform(t.begin(), t.end(), t.begin(), ::tolower);
+        u.allowSpecialSlots = (t == "y" || t == "yes");
+        ulds.push_back(u);
+    }
+
+    // Add a check for empty DBs after loading:
+    if (ulddb.empty()) {
+        cout << RED << "Warning: ULD database is empty or missing. Multi-slot ULDs may not be recognized." << RESET << "\n";
+    }
+    if (db.empty()) {
+        cout << RED << "Warning: Aircraft database is empty or missing. Only custom aircraft can be entered." << RESET << "\n";
+    }
+
+    double avgArm = 0.0;
+    for (auto* s : freeSlots) avgArm += s->arm;
+    if (!freeSlots.empty()) avgArm /= freeSlots.size();
+
     double currentWeight = 0.0, currentMoment = 0.0;
     vector<pair<string, string>> report;
 
     for (auto& u : ulds) {
         int uWidth = getULDWidth(ulddb, u.id);
-        // Add this line near the top of main(), after loading the aircraft DB
-        double bestScore = 1e18;
+        if (uWidth <= 0) uWidth = 1; ;
 
-        for (int i = 0; i <= (int)freeSlots.size() - uWidth; ++i) {
-            bool canPlace = true;
-            for (int w = 0; w < uWidth; ++w) {
-                auto* s = freeSlots[i + w];
-                if (s->occupied) { canPlace = false; break; }
-                if (!u.allowSpecialSlots && (s->slotType == SlotType::NOSE || s->slotType == SlotType::TAIL)) canPlace = false;
-                if (u.type == ULD::Type::MAIN && s->deckName != "main") canPlace = false;
-                if (u.type == ULD::Type::LOWER && s->deckName != "lower") canPlace = false;
-            }
-            if (!canPlace) continue;
-
-            double newCG = currentMoment;
-            double totalWeight = currentWeight;
-            for (int w = 0; w < uWidth; ++w) {
-                newCG += u.weight / uWidth * freeSlots[i + w]->arm;
-                totalWeight += u.weight / uWidth;
-            }
-            newCG /= totalWeight;
-            double score = fabs(newCG - avgArm);
-            if (score < bestScore) { bestScore = score; bestSlot = freeSlots[i]; }
+        // filter slots by deck type
+        vector<Slot*> candidates;
+        for (auto* s : freeSlots) {
+            if ((u.type == ULD::Type::MAIN && s->deckName != "main") ||
+                (u.type == ULD::Type::LOWER && s->deckName != "lower"))
+                continue;
+            if (!u.allowSpecialSlots && (s->slotType == SlotType::NOSE || s->slotType == SlotType::TAIL))
+                continue;
+            candidates.push_back(s);
         }
 
-        if (bestSlot) {
-            int startIdx = bestSlot->index;
-            for (int w = 0; w < uWidth; ++w) {
-                Slot* s = nullptr;
-                for (auto* fs : freeSlots) if (fs->deckName == bestSlot->deckName && fs->index == startIdx + w) { s = fs; break; }
-                if (s) { s->occupied = true; s->occupantId = u.id; s->occupantWeight = u.weight / uWidth; }
+        std::sort(candidates.begin(), candidates.end(),
+            [](Slot* a, Slot* b) { return a->index < b->index; });
+
+        bool placed = false;
+        for (size_t i = 0; i + uWidth <= candidates.size(); ++i) {
+            bool consecutive = true;
+            for (int w = 1; w < uWidth; ++w) {
+                if (candidates[i + w]->index != candidates[i + w - 1]->index + 1) {
+                    consecutive = false; break;
+                }
             }
-            currentMoment += u.weight * bestSlot->arm;
+            if (!consecutive) continue;
+
+            // place ULD
+            for (int w = 0; w < uWidth; ++w) {
+                candidates[i + w]->occupied = true;
+                candidates[i + w]->occupantId = u.id;
+                candidates[i + w]->occupantWeight = u.weight / uWidth;
+            }
+
             currentWeight += u.weight;
-            report.emplace_back(u.id, bestSlot->deckName + "[" + to_string(bestSlot->index + 1) + "]");
+            currentMoment += u.weight * candidates[i]->arm;
+
+            report.emplace_back(u.id,
+                candidates[i]->deckName + "[" + to_string(candidates[i]->index + 1) + "]");
+            placed = true;
+            break;
         }
-        else report.emplace_back(u.id, "UNASSIGNED");
+
+        if (!placed) {
+            report.emplace_back(u.id, "UNASSIGNED");
+        }
+
+        // cleanup: remove occupied from freeSlots
+        freeSlots.erase(std::remove_if(freeSlots.begin(), freeSlots.end(),
+            [](Slot* s) { return s->occupied; }), freeSlots.end());
     }
 
     // report
