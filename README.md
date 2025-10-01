@@ -2,6 +2,8 @@
 
 Aviation Load Calculator is a project designed to assist aviation professionals and enthusiasts in accurately calculating and managing aircraft load and balance. Proper load calculation ensures safe and efficient aircraft operations by preventing overloading and ensuring balance limits are maintained.
 
+See known issues before submitting an issue.
+
 ## Features
 
 - **Weight and Balance Calculation:** Easily input aircraft weights, fuel, cargo, passengers, and calculate total weight and CG (center of gravity).
