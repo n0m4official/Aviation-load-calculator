@@ -76,7 +76,22 @@ Aviation-load-calculator/
 
 ## Contributing
 
+
 Contributions are welcome! Please open issues for feature requests or bugs, and feel free to submit pull requests.
+
+---
+
+## Known Issues
+
+| Issue                     | Response                  |
+|---------------------------|---------------------------|
+| exe version doesn't read .json files | Aware of issue. Unsure of cause. Working on fix. |
+| Creating custom aircraft causes infinite loop | Aware of issue. Unsure of cause. Working on fix. |
+| Calculated position(s) not correct | This was developed as a passion project, not meant for industry use. See disclaimer below. |
+| Number and/or location of positions on aircraft are not correct | Issue cause by how rendering works in terminal. Working on fix. |
+| Program is buggy | Still a work in progress. Please be patient and understand that this is being developed as a passion project. |
+
+---
 
 ## License
 
@@ -88,4 +103,6 @@ This project is open source and available under the [MIT License](LICENSE.txt).
 
 ---
 
-**Disclaimer:** This tool is for educational and reference purposes only. Always verify calculations and consult official aircraft documentation before flight.
+## Disclaimer 
+
+This tool is for educational and reference purposes only. Always verify calculations and consult official aircraft documentation before flight.
